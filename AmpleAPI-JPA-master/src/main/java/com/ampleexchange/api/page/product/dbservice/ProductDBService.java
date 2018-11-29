@@ -60,4 +60,12 @@ public interface ProductDBService {
 
 	public ProductXCannabinoid insertProductxcannabinoid(ProductXCannabinoid productxcannabinoid);
 
+	public void deleteProductxallergen(UUID product_id);
+
+	public void deleteProductxterpene(UUID product_id);
+
+	public void deleteProductxcannabinoid(UUID product_id);
+
+	public void deleteProductxcarrieroil(UUID product_id);
+
 }

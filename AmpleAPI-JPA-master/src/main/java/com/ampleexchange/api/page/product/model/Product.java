@@ -16,6 +16,7 @@ import java.util.UUID;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,11 +24,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.hibernate.annotations.Immutable;
 import org.hibernate.annotations.Subselect;
+
+import com.ampleexchange.api.page.guidedsetup.model.ContactComm;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -167,6 +171,12 @@ public class Product {
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
 	private Set<Carrieroil> carrieroil;
+
+	@OneToMany(mappedBy = "document_id")
+	private Set<Document> document;
+
+	@OneToMany(mappedBy = "productphoto_id")
+	private Set<Productphotos> productphotos;
 
 	@Transient
 	private Set<ProductXAllergen> productxallergen;
@@ -922,6 +932,22 @@ public class Product {
 
 	public void setProductxcarrieroil(Set<ProductXCarrieroil> productxcarrieroil) {
 		this.productxcarrieroil = productxcarrieroil;
+	}
+
+	public Set<Document> getDocument() {
+		return document;
+	}
+
+	public void setDocument(Set<Document> document) {
+		this.document = document;
+	}
+
+	public Set<Productphotos> getProductphotos() {
+		return productphotos;
+	}
+
+	public void setProductphotos(Set<Productphotos> productphotos) {
+		this.productphotos = productphotos;
 	}
 
 }

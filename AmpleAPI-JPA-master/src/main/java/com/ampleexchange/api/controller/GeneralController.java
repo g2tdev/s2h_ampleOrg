@@ -419,7 +419,7 @@ public class GeneralController {
 	/**
 	 * Fetch Product for editing : SPP1.0E-1 - get existing product info, SPP1.2-1
 	 * Fetch Product Information with respect to Product id requested : SPC 1.1-2,
-	 * SPP1.2-1
+	 * SPP1.2-1.. <<  Also for BPP 1.1 get Product to view >>
 	 * 
 	 * @param request
 	 * @param response
@@ -564,5 +564,7 @@ public class GeneralController {
 		String apiId = "14";
 		return productPage.processHttpRequest(request, response, apiVersion, apiId, userId, null);
 	}
+	
+	
 
 }

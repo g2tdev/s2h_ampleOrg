@@ -113,7 +113,7 @@ public class ProductPageImpl implements ProductPage {
 
 		prodTemp.setProduct_deleted(false);
 		prodTemp.setProduct_layersperpallet(0d);
-		prodTemp.setCategory_id(UUID.fromString("80f8f55d-2194-4326-abf1-d95312d443a8"));
+		prodTemp.setCategory_id(UUID.randomUUID());
 		prodTemp.setProduct_longname(" ");
 
 		Product product = productService.createProduct(prodTemp);
@@ -469,8 +469,10 @@ public class ProductPageImpl implements ProductPage {
 		// Allergen x product data
 		if (prodInfo.getProductxallergen() != null) {
 
+			productService.deleteProductxallergen(prodInfo.getProduct_id());
+
 			Iterator<ProductXAllergen> itr = prodInfo.getProductxallergen().iterator();
-			int rowPos = 0;
+			// int rowPos = 0;
 			while (itr.hasNext()) {
 				ProductXAllergen prodallergenTemp = itr.next();
 
@@ -478,10 +480,14 @@ public class ProductPageImpl implements ProductPage {
 				prodAllerInsert.setLastupdatedby(UUID.fromString(userId));
 				prodAllerInsert.setProduct_id(prodInfo.getProduct_id());
 				prodAllerInsert.setAllergen_id(prodallergenTemp.getAllergen_id());
-				prodAllerInsert.setProductallergen_sort(rowPos);
-				rowPos++;
+
+				prodAllerInsert.setProductallergen_sort(prodallergenTemp.getProductallergen_sort());
+				// prodAllerInsert.setProductallergen_sort(rowPos);
+				// rowPos++;
+
 				prodAllerInsert.setProductallergen_createdate(new Timestamp(System.currentTimeMillis()));
-				prodAllerInsert.setProductallergen_updatedate(new Date(System.currentTimeMillis()));
+				// prodAllerInsert.setProductallergen_updatedate(new
+				// Date(System.currentTimeMillis()));
 				prodAllerInsert.setProductallergen_deleted(false);
 
 				productService.insertProductallergen(prodAllerInsert);
@@ -490,6 +496,8 @@ public class ProductPageImpl implements ProductPage {
 
 		// carrieroil x product data
 		if (prodInfo.getProductxcarrieroil() != null) {
+
+			productService.deleteProductxcarrieroil(prodInfo.getProduct_id());
 
 			Iterator<ProductXCarrieroil> itr = prodInfo.getProductxcarrieroil().iterator();
 			while (itr.hasNext()) {
@@ -500,7 +508,8 @@ public class ProductPageImpl implements ProductPage {
 				prodCarrieroilInsert.setProduct_id(prodInfo.getProduct_id());
 				prodCarrieroilInsert.setCarrieroil_id(prodCarrieroilTemp.getCarrieroil_id());
 				prodCarrieroilInsert.setProductcarrieroil_createdate(new Timestamp(System.currentTimeMillis()));
-				prodCarrieroilInsert.setProductcarrieroil_updatedate(new Date(System.currentTimeMillis()));
+				// prodCarrieroilInsert.setProductcarrieroil_updatedate(new
+				// Date(System.currentTimeMillis()));
 				prodCarrieroilInsert.setProductcarrieroil_deleted(false);
 
 				productService.insertProductxcarrieroil(prodCarrieroilInsert);
@@ -509,6 +518,8 @@ public class ProductPageImpl implements ProductPage {
 
 		// cannabinoid x product data
 		if (prodInfo.getProductxcannabinoid() != null) {
+
+			productService.deleteProductxcannabinoid(prodInfo.getProduct_id());
 
 			Iterator<ProductXCannabinoid> itr = prodInfo.getProductxcannabinoid().iterator();
 			int rowPos = 0;
@@ -529,7 +540,8 @@ public class ProductPageImpl implements ProductPage {
 						.setProductcannabinoid_maxperc(prodCannabinoidTemp.getProductcannabinoid_maxperc());
 				prodCannabinoidInsert
 						.setProductcannabinoid_minperc(prodCannabinoidTemp.getProductcannabinoid_minperc());
-				prodCannabinoidInsert.setProductcannabinoid_updatedate(new Date(System.currentTimeMillis()));
+				// prodCannabinoidInsert.setProductcannabinoid_updatedate(new
+				// Date(System.currentTimeMillis()));
 
 				productService.insertProductxcannabinoid(prodCannabinoidInsert);
 			}
@@ -538,6 +550,8 @@ public class ProductPageImpl implements ProductPage {
 		// terpene x product data
 
 		if (prodInfo.getProductxterpene() != null) {
+
+			productService.deleteProductxterpene(prodInfo.getProduct_id());
 
 			Iterator<ProductXTerpene> itr = prodInfo.getProductxterpene().iterator();
 			int rowPos = 0;
@@ -555,7 +569,8 @@ public class ProductPageImpl implements ProductPage {
 				prodTerpeneInsert.setProductterpene_deleted(false);
 				prodTerpeneInsert.setProductterpene_maxperc(prodTerpeneTemp.getProductterpene_maxperc());
 				prodTerpeneInsert.setProductterpene_minperc(prodTerpeneTemp.getProductterpene_minperc());
-				prodTerpeneInsert.setProductterpene_updatedate(new Date(System.currentTimeMillis()));
+				// prodTerpeneInsert.setProductterpene_updatedate(new
+				// Date(System.currentTimeMillis()));
 
 				productService.insertProductxterpene(prodTerpeneInsert);
 			}

@@ -40,7 +40,7 @@ public class ProductDBServiceImpl implements ProductDBService {
 	private ProductXCannabinoidRepository productxcannabinoidRepository;
 
 	@Autowired
-	private ProductXCarrieroilRepository productxcarrierRepository;
+	private ProductXCarrieroilRepository productxcarrieroilRepository;
 
 	@Autowired
 	private ProductXTerpeneRepository productxterpeneRepository;
@@ -153,12 +153,32 @@ public class ProductDBServiceImpl implements ProductDBService {
 
 	@Override
 	public ProductXCarrieroil insertProductxcarrieroil(ProductXCarrieroil productxcarrieroil) {
-		return productxcarrierRepository.save(productxcarrieroil);
+		return productxcarrieroilRepository.save(productxcarrieroil);
 	}
 
 	@Override
 	public ProductXCannabinoid insertProductxcannabinoid(ProductXCannabinoid productxcannabinoid) {
 		return productxcannabinoidRepository.save(productxcannabinoid);
+	}
+
+	@Override
+	public void deleteProductxallergen(UUID product_id) {
+		productxallergenRepository.deleteProductxallergen(product_id);
+	}
+
+	@Override
+	public void deleteProductxterpene(UUID product_id) {
+		productxterpeneRepository.deleteProductxterpene(product_id);
+	}
+
+	@Override
+	public void deleteProductxcannabinoid(UUID product_id) {
+		productxcannabinoidRepository.deleteProductxcannabinoid(product_id);
+	}
+
+	@Override
+	public void deleteProductxcarrieroil(UUID product_id) {
+		productxcarrieroilRepository.deleteProductxcarrieroil(product_id);
 	}
 
 }
